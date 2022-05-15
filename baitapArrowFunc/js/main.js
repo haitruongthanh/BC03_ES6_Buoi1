@@ -15,7 +15,7 @@ let createButton = () => {
   let contentHTML = "";
   colorList.forEach((item) => {
     let contentBtn = /* html */ `
-        <button id="${item}" class="color-button ${item}" onclick="addClass(\'${item}\')"
+        <button id="${item}" class="color-button ${item}" onclick="addClass('${item}')"
         ></button> 
         `;
     contentHTML += contentBtn;
@@ -24,34 +24,19 @@ let createButton = () => {
 };
 
 createButton();
-
 let addClass = (className) => {
-  /*   let houseClass = document
-    .getElementById("house")
-    .classList.contains(className);
-  if (houseClass) {
-    document.getElementById("house").classList.add(className);
-  } else {
-    document.getElementById("house").classList.remove(className);
-  } */
-
-  document.getElementById("house").classList.toggle(className);
-  document.getElementById(className).classList.toggle("active");
+  document.getElementById("house").className = `house ${className}`;
 };
 
-/* let removeActive = (className) => {
-  let isActive = document.getElementsByClassName("active");
-  console.log(isActive.length);
-  if (isActive.length > 1) {
-    colorList.forEach(function (item) {
-      document.getElementById(item).classList.remove("active");
-      document.getElementById("house").classList.remove(className);
-    });
-  }
-};
-
-let reset = (nameClass) => {
-  document.getElementById("house").className.replace(nameClass, "");
-  document.getElementById(nameClass).className.replace("active", "");
-};
- */
+let header = document.getElementById("colorContainer");
+let btns = header.getElementsByClassName("color-button");
+for (let i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", () => {
+    let current = document.getElementsByClassName("active");
+    console.log(current);
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(" active", "");
+    }
+    this.className += " active";
+  });
+}
